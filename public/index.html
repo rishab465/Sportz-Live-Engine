@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sportz Live Center</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Live sports feed</p>
+          <h1>Sportz Match </h1>
+          <p class="hero-text">
+            Track current matches and open any feed to see the latest commentary.
+          </p>
+          <div class="status-row">
+            <div class="pill">
+              <span class="dot dot-live"></span>
+              <span id="http-status">API checking...</span>
+            </div>
+            <div class="pill">
+              <span class="dot" id="ws-dot"></span>
+              <span id="ws-status">Socket disconnected</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <div class="hero-stat">
+            <span>Total matches</span>
+            <strong id="match-count">0</strong>
+          </div>
+          <div class="hero-stat">
+            <span>Live now</span>
+            <strong id="live-count">0</strong>
+          </div>
+          <div class="hero-stat">
+            <span>Selected feed</span>
+            <strong id="selected-label">None</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard">
+        <section class="panel matches-panel">
+          <div class="panel-head">
+            <div>
+              <p class="section-kicker">Matches</p>
+              <h2>Live board</h2>
+            </div>
+            <button id="refresh-button" class="ghost-button" type="button">Refresh</button>
+          </div>
+          <div id="match-list" class="match-list"></div>
+        </section>
+
+        <section class="panel feed-panel">
+          <div class="panel-head">
+            <div>
+              <p class="section-kicker">Commentary</p>
+              <h2 id="feed-title">Select a match</h2>
+            </div>
+            <div class="legend">
+              <span class="legend-chip">REST bootstrap</span>
+              <span class="legend-chip accent">WebSocket live</span>
+            </div>
+          </div>
+
+          <div id="match-summary" class="match-summary empty-state">
+            Choose a match on the left to load commentary.
+          </div>
+
+          <div id="commentary-list" class="commentary-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="match-card-template">
+      <button class="match-card" type="button">
+        <div class="match-card-top">
+          <span class="match-sport"></span>
+          <span class="match-status"></span>
+        </div>
+        <div class="teams"></div>
+        <div class="scoreline"></div>
+        <div class="timing"></div>
+      </button>
+    </template>
+
+    <template id="commentary-item-template">
+      <article class="commentary-item">
+        <div class="commentary-meta">
+          <span class="commentary-minute"></span>
+          <span class="commentary-type"></span>
+        </div>
+        <p class="commentary-message"></p>
+        <div class="commentary-footer"></div>
+      </article>
+    </template>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

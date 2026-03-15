@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: sportz-websockets
+    env: node
+    plan: free
+    autoDeploy: true
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /matches?limit=1
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false
+      - key: API_URL
+        sync: false
+      - key: THESPORTSDB_API_KEY
+        value: "3"
+      - key: THESPORTSDB_LEAGUE_ID
+        value: "4328"
+      - key: APIFOOTBALL_API_KEY
+        sync: false
+      - key: APIFOOTBALL_BASE_URL
+        value: https://v3.football.api-sports.io
+      - key: ARCJET_KEY
+        sync: false
+      - key: ARCJET_ENV
+        value: development
+      - key: BROADCAST
+        value: "1"
+      - key: DELAY_MS
+        value: "250"
+      - key: MATCH_COUNT
+        value: "0"
